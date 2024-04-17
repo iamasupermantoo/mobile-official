@@ -1,0 +1,581 @@
+<html>
+ <head>
+  <style type="text/css">
+    @media (max-width: 375px) {
+        .edit-form tr td input {
+            width: 100%;
+        }
+
+        .edit-form tr th:first-child, .edit-form tr td:first-child {
+            width: 20%;
+        }
+
+        .edit-form tr th:nth-last-of-type(-n+2), .edit-form tr td:nth-last-of-type(-n+2) {
+            display: none;
+        }
+    }
+
+    .edit-form table > tbody > tr td a.btn-delcfg {
+        visibility: hidden;
+    }
+
+    .edit-form table > tbody > tr:hover td a.btn-delcfg {
+        visibility: visible;
+    }
+    #config-box div a.btn {
+        color: #fff;
+        text-decoration: none;
+    }
+</style> 
+ </head>
+ <body>
+ <div id="config-box">
+ <div class="alert alert-info-light" style="margin-bottom:10px;">
+     <div style="margin-top:10px;">
+         <a href="{:addon_url('wwh/index/index')}" class="btn btn-warning" target="_blank"><i class="fa fa-home"></i> 官网首页</a>
+         <a href="https://www.fastadmin.net/store/wwh.html" class="btn btn-info" target="_blank"><i class="fa fa-question-circle"></i> 常见问题</a>
+         <a href="addon/config?name=wwh" class="btn btn-primary btn-dialog" title="配置"><i class="fa fa-pencil"></i> 插件配置</a>
+     </div>
+ </div>
+  <div class="panel panel-default panel-intro">
+      <div class="panel-heading">
+          <div class="panel-lead"><em>站点配置</em>百度地图坐标查询地址：http://api.map.baidu.com/lbsapi/getpoint/index.html</div>
+          <ul class="nav nav-tabs">
+              <li class="active"><a href="#config" data-toggle="tab">站点设置</a></li>
+              <li class=""><a href="#banner" data-toggle="tab">栏目Banner</a></li>
+              <li class=""><a href="#footer" data-toggle="tab">底部链接</a></li>
+              <li class=""><a href="#map" data-toggle="tab">地图配置</a></li>
+          </ul>
+      </div>
+      <div class="panel-body">
+    <div id="myTabContent" class="tab-content"> 
+     <div class="tab-pane fade active in" id="config">
+      <div class="widget-body no-padding"> 
+       <form id="basic-form" class="edit-form form-horizontal nice-validator n-default n-bootstrap" role="form" data-toggle="validator" method="POST" action="{:url('Admin/wwh/Config/configedit')}" novalidate="novalidate">
+        <input type="hidden" name="__token__" value="" />
+        <table class="table table-striped"> 
+         <tbody> 
+          <tr> 
+           <td style="width:8%">站点名称</td> 
+           <td> 
+            <div class="row"> 
+             <div class="col-sm-8 col-xs-12"> 
+              <input type="text" name="site_name" value="{$data['site_name']}" class="form-control" /> 
+             </div> 
+             <div class="col-sm-4"></div> 
+            </div> </td> 
+           <td>site_name</td> 
+           <td></td> 
+          </tr> 
+          <tr> 
+           <td style="width:8%">关键字</td> 
+           <td> 
+            <div class="row"> 
+             <div class="col-sm-8 col-xs-12"> 
+              <input type="text" name="keywords" value="{$data['keywords']}" class="form-control" /> 
+             </div> 
+             <div class="col-sm-4"></div> 
+            </div> </td> 
+           <td>keywords</td> 
+           <td></td> 
+          </tr> 
+          <tr> 
+           <td style="width:8%">描述</td> 
+           <td> 
+            <div class="row"> 
+             <div class="col-sm-8 col-xs-12"> 
+              <textarea name="description" class="form-control" style="height:120px;">{$data['description']}</textarea> 
+             </div> 
+             <div class="col-sm-4"></div> 
+            </div> </td> 
+           <td>description</td> 
+           <td></td> 
+          </tr>
+		  <tr>
+              <td style="width:8%">logo</td>
+              <td>
+                  <div class="row">
+                      <div class="col-sm-8 col-xs-12">
+                          <div class="form-inline">
+                              <input id="c-logo" class="form-control" size="35" name="logo" type="text" value="{$data['logo']}" data-tip="">
+                              <span><button type="button" id="plupload-logo" class="btn btn-danger plupload" data-input-id="c-logo" data-mimetype="image/*" data-multiple="false" data-preview-id="p-logo"><i class="fa fa-upload"></i> 上传</button></span>
+                              <span><button type="button" id="fachoose-logo" class="btn btn-primary fachoose" data-input-id="c-logo" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> 选择</button></span>
+                              <ul class="row list-inline plupload-preview" id="p-logo"></ul>
+                          </div>
+                      </div>
+                      <div class="col-sm-4"></div>
+                  </div>
+              </td>
+              <td>logo尺寸：200X28</td>
+              <td></td>
+          </tr>
+          <tr>
+              <td style="width:8%">彩色logo</td>
+              <td>
+                  <div class="row">
+                      <div class="col-sm-8 col-xs-12">
+                          <div class="form-inline">
+                              <input id="c-logo1" class="form-control" size="35" name="logo1" type="text" value="{$data['logo1']}" data-tip="">
+                              <span><button type="button" id="plupload-logo1" class="btn btn-danger plupload" data-input-id="c-logo1" data-mimetype="image/*" data-multiple="false" data-preview-id="p-logo1"><i class="fa fa-upload"></i> 上传</button></span>
+                              <span><button type="button" id="fachoose-logo1" class="btn btn-primary fachoose" data-input-id="c-logo1" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> 选择</button></span>
+                              <ul class="row list-inline plupload-preview" id="p-logo1"></ul>
+                          </div>
+                      </div>
+                      <div class="col-sm-4"></div>
+                  </div>
+              </td>
+              <td>彩色logo尺寸：200X28</td>
+              <td></td>
+          </tr>
+          <tr>
+              <td style="width:8%">底部logo</td>
+              <td>
+                  <div class="row">
+                      <div class="col-sm-8 col-xs-12">
+                          <div class="form-inline">
+                              <input id="c-footer_logo" class="form-control" size="35" name="footer_logo" type="text" value="{$data['footer_logo']}" data-tip="">
+                              <span><button type="button" id="plupload-footer_logo" class="btn btn-danger plupload" data-input-id="c-footer_logo" data-mimetype="image/*" data-multiple="false" data-preview-id="p-footer_logo"><i class="fa fa-upload"></i> 上传</button></span>
+                              <span><button type="button" id="fachoose-footer_logo" class="btn btn-primary fachoose" data-input-id="c-footer_logo" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> 选择</button></span>
+                              <ul class="row list-inline plupload-preview" id="p-footer_logo"></ul>
+                          </div>
+                      </div>
+                      <div class="col-sm-4"></div>
+                  </div>
+              </td>
+              <td>底部logo尺寸：200X28</td>
+              <td></td>
+          </tr>
+		  <tr> 
+           <td style="width:8%">底部邮箱</td>
+           <td> 
+            <div class="row"> 
+             <div class="col-sm-8 col-xs-12"> 
+              <input type="text" name="email" value="{$data['email']}" class="form-control" /> 
+             </div> 
+             <div class="col-sm-4"></div> 
+            </div> </td> 
+           <td>email</td> 
+           <td></td> 
+          </tr>
+          <tr>
+              <td style="width:8%">服务热线</td>
+              <td>
+                  <div class="row">
+                      <div class="col-sm-8 col-xs-12">
+                          <input type="text" name="tel" value="{$data['tel']}" class="form-control" />
+                      </div>
+                      <div class="col-sm-4"></div>
+                  </div> </td>
+              <td>tel</td>
+              <td></td>
+          </tr>
+		  <tr> 
+           <td style="width:8%">公网安备号</td> 
+           <td> 
+            <div class="row"> 
+             <div class="col-sm-8 col-xs-12"> 
+              <input type="text" name="gongwang" value="{$data['gongwang']}" class="form-control" /> 
+             </div>
+                <div class="col-sm-4"><input type="text" name="link1" value="{$data['link1']}" class="form-control" /> </div>
+            </div> </td> 
+           <td>gongwang</td> 
+           <td></td> 
+          </tr>
+		  <tr> 
+           <td style="width:8%">网站备案号</td> 
+           <td> 
+            <div class="row"> 
+             <div class="col-sm-8 col-xs-12"> 
+              <input type="text" name="beian" value="{$data['beian']}" class="form-control" /> 
+             </div>
+                <div class="col-sm-4"><input type="text" name="link2" value="{$data['link2']}" class="form-control" /> </div>
+            </div> </td> 
+           <td>beian</td> 
+           <td></td> 
+          </tr>
+		  <tr> 
+           <td style="width:8%">版权</td> 
+           <td> 
+            <div class="row"> 
+             <div class="col-sm-8 col-xs-12"> 
+              <input type="text" name="copyright" value="{$data['copyright']}" class="form-control" /> 
+             </div> 
+             <div class="col-sm-4"></div> 
+            </div> </td> 
+           <td>copyright</td> 
+           <td></td> 
+          </tr>
+          <tr>
+              <td style="width:8%">微博</td>
+              <td>
+                  <div class="row">
+                      <div class="col-sm-8 col-xs-12">
+                          <input type="text" name="weibo" value="{$data['weibo']}" class="form-control" />
+                      </div>
+                      <div class="col-sm-4"></div>
+                  </div> </td>
+              <td>weibo</td>
+              <td></td>
+          </tr>
+		  <tr>
+              <td style="width:8%">微信二维码</td>
+              <td>
+                  <div class="row">
+                      <div class="col-sm-8 col-xs-12">
+                          <div class="form-inline">
+                              <input id="c-wechat" class="form-control" size="35" name="wechat" type="text" value="{$data['wechat']}" data-tip="">
+                              <span><button type="button" id="plupload-wechat" class="btn btn-danger plupload" data-input-id="c-wechat" data-mimetype="image/*" data-multiple="false" data-preview-id="p-wechat"><i class="fa fa-upload"></i> 上传</button></span>
+                              <span><button type="button" id="fachoose-wechat" class="btn btn-primary fachoose" data-input-id="c-wechat" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> 选择</button></span>
+                              <ul class="row list-inline plupload-preview" id="p-wechat"></ul>
+                          </div>
+                      </div>
+                      <div class="col-sm-4"></div>
+                  </div>
+              </td>
+              <td>wechat</td>
+              <td></td>
+          </tr>
+          <tr>
+              <td style="width:8%">抖音</td>
+              <td>
+                  <div class="row">
+                      <div class="col-sm-8 col-xs-12">
+                          <div class="form-inline">
+                              <input id="c-douyin" class="form-control" size="35" name="douyin" type="text" value="{$data['douyin']}" data-tip="">
+                              <span><button type="button" id="plupload-douyin" class="btn btn-danger plupload" data-input-id="c-douyin" data-mimetype="image/*" data-multiple="false" data-preview-id="p-douyin"><i class="fa fa-upload"></i> 上传</button></span>
+                              <span><button type="button" id="fachoose-douyin" class="btn btn-primary fachoose" data-input-id="c-douyin" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> 选择</button></span>
+                              <ul class="row list-inline plupload-preview" id="p-douyin"></ul>
+                          </div>
+                      </div>
+                      <div class="col-sm-4"></div>
+                  </div>
+              </td>
+              <td>douyin</td>
+              <td></td>
+          </tr>
+
+         </tbody> 
+         <tfoot> 
+          <tr> 
+           <td></td> 
+           <td> <button type="submit" class="btn btn-success btn-embossed">保存</button> </td> 
+           <td></td> 
+           <td></td> 
+          </tr> 
+         </tfoot> 
+        </table> 
+       </form> 
+      </div> 
+     </div>
+
+        <div class="tab-pane fade " id="banner">
+            <div class="widget-body no-padding">
+                <form id="basic-form" class="edit-form form-horizontal nice-validator n-default n-bootstrap" role="form" data-toggle="validator" method="POST" action="{:url('Admin/wwh/Config/banneredit')}" novalidate="novalidate">
+                    <input type="hidden" name="__token__" value="" />
+                    <table class="table table-striped">
+                        <tbody>
+
+                        <tr>
+                            <td style="width:8%">产品中心</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-8 col-xs-12">
+                                        <div class="form-inline">
+                                            <input id="c-banner1" class="form-control" size="35" name="banner1" type="text" value="{$data['banner1']}" data-tip="">
+                                            <span><button type="button" id="plupload-banner1" class="btn btn-danger plupload" data-input-id="c-banner1" data-mimetype="image/*" data-multiple="false" data-preview-id="p-banner1"><i class="fa fa-upload"></i> 上传</button></span>
+                                            <span><button type="button" id="fachoose-banner1" class="btn btn-primary fachoose" data-input-id="c-banner1" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> 选择</button></span>
+                                            <ul class="row list-inline plupload-preview" id="p-banner1"></ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                </div>
+                            </td>
+                            <td>尺寸：1920X500</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="width:8%">产品中心文字</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-8 col-xs-12">
+                                        <input type="text" name="ban1_t1" value="{$data['ban1_t1']}" class="form-control" />
+                                    </div>
+                                    <div class="col-sm-4"><input type="text" name="ban1_t2" value="{$data['ban1_t2']}" class="form-control" /> </div>
+                                </div> </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="width:8%">解决方案</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-8 col-xs-12">
+                                        <div class="form-inline">
+                                            <input id="c-banner2" class="form-control" size="35" name="banner2" type="text" value="{$data['banner2']}" data-tip="">
+                                            <span><button type="button" id="plupload-banner2" class="btn btn-danger plupload" data-input-id="c-banner2" data-mimetype="image/*" data-multiple="false" data-preview-id="p-banner2"><i class="fa fa-upload"></i> 上传</button></span>
+                                            <span><button type="button" id="fachoose-banner2" class="btn btn-primary fachoose" data-input-id="c-banner2" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> 选择</button></span>
+                                            <ul class="row list-inline plupload-preview" id="p-banner2"></ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                </div>
+                            </td>
+                            <td>尺寸：1920X500</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="width:8%">解决方案文字</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-8 col-xs-12">
+                                        <input type="text" name="ban2_t1" value="{$data['ban2_t1']}" class="form-control" />
+                                    </div>
+                                    <div class="col-sm-4"><input type="text" name="ban2_t2" value="{$data['ban2_t2']}" class="form-control" /> </div>
+                                </div> </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="width:8%">服务中心</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-8 col-xs-12">
+                                        <div class="form-inline">
+                                            <input id="c-banner3" class="form-control" size="35" name="banner3" type="text" value="{$data['banner3']}" data-tip="">
+                                            <span><button type="button" id="plupload-banner3" class="btn btn-danger plupload" data-input-id="c-banner3" data-mimetype="image/*" data-multiple="false" data-preview-id="p-banner3"><i class="fa fa-upload"></i> 上传</button></span>
+                                            <span><button type="button" id="fachoose-banner3" class="btn btn-primary fachoose" data-input-id="c-banner3" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> 选择</button></span>
+                                            <ul class="row list-inline plupload-preview" id="p-banner3"></ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                </div>
+                            </td>
+                            <td>尺寸：1920X500</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="width:8%">服务中心文字</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-8 col-xs-12">
+                                        <input type="text" name="ban3_t1" value="{$data['ban3_t1']}" class="form-control" />
+                                    </div>
+                                    <div class="col-sm-4"><input type="text" name="ban3_t2" value="{$data['ban3_t2']}" class="form-control" /> </div>
+                                </div> </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="width:8%">合作伙伴</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-8 col-xs-12">
+                                        <div class="form-inline">
+                                            <input id="c-banner6" class="form-control" size="35" name="banner6" type="text" value="{$data['banner6']}" data-tip="">
+                                            <span><button type="button" id="plupload-banner6" class="btn btn-danger plupload" data-input-id="c-banner6" data-mimetype="image/*" data-multiple="false" data-preview-id="p-banner6"><i class="fa fa-upload"></i> 上传</button></span>
+                                            <span><button type="button" id="fachoose-banner6" class="btn btn-primary fachoose" data-input-id="c-banner6" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> 选择</button></span>
+                                            <ul class="row list-inline plupload-preview" id="p-banner6"></ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                </div>
+                            </td>
+                            <td>尺寸：1920X500</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="width:8%">合作伙伴文字</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-8 col-xs-12">
+                                        <input type="text" name="ban6_t1" value="{$data['ban6_t1']}" class="form-control" />
+                                    </div>
+                                    <div class="col-sm-4"><input type="text" name="ban6_t2" value="{$data['ban6_t2']}" class="form-control" /> </div>
+                                </div> </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="width:8%">新闻中心</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-8 col-xs-12">
+                                        <div class="form-inline">
+                                            <input id="c-banner4" class="form-control" size="35" name="banner4" type="text" value="{$data['banner4']}" data-tip="">
+                                            <span><button type="button" id="plupload-banner4" class="btn btn-danger plupload" data-input-id="c-banner4" data-mimetype="image/*" data-multiple="false" data-preview-id="p-banner4"><i class="fa fa-upload"></i> 上传</button></span>
+                                            <span><button type="button" id="fachoose-banner4" class="btn btn-primary fachoose" data-input-id="c-banner4" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> 选择</button></span>
+                                            <ul class="row list-inline plupload-preview" id="p-banner4"></ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                </div>
+                            </td>
+                            <td>尺寸：1920X500</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="width:8%">新闻中心文字</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-8 col-xs-12">
+                                        <input type="text" name="ban4_t1" value="{$data['ban4_t1']}" class="form-control" />
+                                    </div>
+                                    <div class="col-sm-4"><input type="text" name="ban4_t2" value="{$data['ban4_t2']}" class="form-control" /> </div>
+                                </div> </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="width:8%">关于我们</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-8 col-xs-12">
+                                        <div class="form-inline">
+                                            <input id="c-banner5" class="form-control" size="35" name="banner5" type="text" value="{$data['banner5']}" data-tip="">
+                                            <span><button type="button" id="plupload-banner5" class="btn btn-danger plupload" data-input-id="c-banner5" data-mimetype="image/*" data-multiple="false" data-preview-id="p-banner5"><i class="fa fa-upload"></i> 上传</button></span>
+                                            <span><button type="button" id="fachoose-banner5" class="btn btn-primary fachoose" data-input-id="c-banner5" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> 选择</button></span>
+                                            <ul class="row list-inline plupload-preview" id="p-banner5"></ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                </div>
+                            </td>
+                            <td>尺寸：1920X500</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="width:8%">关于我们文字</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-8 col-xs-12">
+                                        <input type="text" name="ban5_t1" value="{$data['ban5_t1']}" class="form-control" />
+                                    </div>
+                                    <div class="col-sm-4"><input type="text" name="ban5_t2" value="{$data['ban5_t2']}" class="form-control" /> </div>
+                                </div> </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td></td>
+                            <td> <button type="submit" class="btn btn-success btn-embossed">保存</button> </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </form>
+            </div>
+        </div>
+
+        <div class="tab-pane fade " id="footer">
+            <div class="widget-body no-padding">
+                <form id="basic-form" class="edit-form form-horizontal nice-validator n-default n-bootstrap" role="form" data-toggle="validator" method="POST" action="{:url('Admin/wwh/Config/footeredit')}" novalidate="novalidate">
+                    <input type="hidden" name="__token__" value="" />
+                    <table class="table table-striped">
+                        <tbody>
+
+                        <tr>
+                            <td style="width:8%">底部链接</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-8 col-xs-12">
+                                        <textarea name="content" class="form-control" style="height:500px;">{$data.content|htmlentities}</textarea>
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                </div> </td>
+                            <td>content</td>
+                            <td></td>
+                        </tr>
+
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td></td>
+                            <td> <button type="submit" class="btn btn-success btn-embossed">保存</button> </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </form>
+            </div>
+        </div>
+
+        <div class="tab-pane fade " id="map">
+            <div class="widget-body no-padding">
+                <form id="basic-form" class="edit-form form-horizontal nice-validator n-default n-bootstrap" role="form" data-toggle="validator" method="POST" action="{:url('Admin/wwh/Config/mapedit')}" novalidate="novalidate">
+                    <input type="hidden" name="__token__" value="" />
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr>
+                            <td style="width:8%">地图坐标</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-8 col-xs-12">
+                                        <input type="text" name="map_zb" value="{$data['map_zb']}" class="form-control" />
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                </div> </td>
+                            <td>map_zb</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="width:8%">到这去坐标</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-8 col-xs-12">
+                                        <input type="text" name="map_dzq" value="{$data['map_dzq']}" class="form-control" />
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                </div> </td>
+                            <td>map_dzq</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="width:8%">公司名称</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-8 col-xs-12">
+                                        <input type="text" name="map_mc" value="{$data['map_mc']}" class="form-control" />
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                </div> </td>
+                            <td>map_mc</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="width:8%">公司地址</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-sm-8 col-xs-12">
+                                        <input type="text" name="map_dz" value="{$data['map_dz']}" class="form-control" />
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                </div> </td>
+                            <td>map_dz</td>
+                            <td></td>
+                        </tr>
+
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td></td>
+                            <td> <button type="submit" class="btn btn-success btn-embossed">保存</button> </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </form>
+            </div>
+        </div>
+
+    </div> 
+   </div> 
+  </div>
+ </div>
+ </body>
+</html>

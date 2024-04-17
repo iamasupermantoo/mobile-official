@@ -1,0 +1,370 @@
+<html>
+ <head>
+  <style type="text/css">
+    @media (max-width: 375px) {
+        .edit-form tr td input {
+            width: 100%;
+        }
+
+        .edit-form tr th:first-child, .edit-form tr td:first-child {
+            width: 20%;
+        }
+
+        .edit-form tr th:nth-last-of-type(-n+2), .edit-form tr td:nth-last-of-type(-n+2) {
+            display: none;
+        }
+    }
+
+    .edit-form table > tbody > tr td a.btn-delcfg {
+        visibility: hidden;
+    }
+
+    .edit-form table > tbody > tr:hover td a.btn-delcfg {
+        visibility: visible;
+    }
+    #config-box div a.btn {
+     color: #fff;
+     text-decoration: none;
+    }
+</style> 
+ </head>
+ <body>
+ <div id="config-box">
+  <div class="alert alert-info-light" style="margin-bottom:10px;">
+   <div style="margin-top:10px;">
+    <a href="{:addon_url('wwh/index/index')}" class="btn btn-warning" target="_blank"><i class="fa fa-home"></i> 官网首页</a>
+    <a href="https://www.fastadmin.net/store/wwh.html" class="btn btn-info" target="_blank"><i class="fa fa-question-circle"></i> 常见问题</a>
+    <a href="addon/config?name=wwh" class="btn btn-primary btn-dialog" title="配置"><i class="fa fa-pencil"></i> 插件配置</a>
+   </div>
+  </div>
+  <div class="panel panel-default panel-intro"> 
+   <div class="panel-heading"> 
+    <ul class="nav nav-tabs"> 
+     <li class="active"><a href="#about" data-toggle="tab">企业介绍</a></li>
+     <li class=""><a href="#culture" data-toggle="tab">企业文化</a></li>
+    </ul> 
+   </div> 
+   <div class="panel-body"> 
+    <div id="myTabContent" class="tab-content"> 
+     <div class="tab-pane fade active in" id="about"> 
+      <div class="widget-body no-padding"> 
+       <form id="basic-form" class="edit-form form-horizontal nice-validator n-default n-bootstrap" role="form" data-toggle="validator" method="POST" action="{:url('Admin/wwh/About/about')}" novalidate="novalidate"> 
+        <input type="hidden" name="__token__" value="" /> 
+        <table class="table table-striped"> 
+         <tbody> 
+          <tr> 
+           <td style="width:8%">关于标题</td> 
+           <td> 
+            <div class="row"> 
+             <div class="col-sm-8 col-xs-12"> 
+              <input type="text" name="about_title" value="{$data['about_title']}" class="form-control" /> 
+             </div> 
+             <div class="col-sm-4"></div> 
+            </div> </td> 
+           <td>about_title</td> 
+           <td></td> 
+          </tr>
+          <tr>
+           <td style="width:8%">关于简述</td>
+           <td>
+            <div class="row">
+             <div class="col-sm-8 col-xs-12">
+              <textarea id="c-about_description" name="about_description" class="form-control editor" rows="5" name="about_description" cols="50">{$data.about_description|htmlentities}</textarea>
+             </div>
+             <div class="col-sm-4"></div>
+            </div> </td>
+           <td>about_description</td>
+           <td></td>
+          </tr> 
+          <tr> 
+           <td style="width:8%">关于内容</td> 
+           <td> 
+            <div class="row"> 
+             <div class="col-sm-8 col-xs-12"> 
+              <textarea id="c-about_content" name="about_content" class="form-control editor" rows="5" name="about_content" cols="50">{$data.about_content|htmlentities}</textarea>
+             </div> 
+             <div class="col-sm-4"></div> 
+            </div> </td> 
+           <td>about_content</td> 
+           <td></td> 
+          </tr>
+          <tr>
+           <td style="width:8%">关于图片</td>
+           <td>
+            <div class="row">
+             <div class="col-sm-8 col-xs-12">
+              <div class="form-inline">
+               <input id="c-about_image" class="form-control" size="35" name="about_image" type="text" value="{$data['about_image']}" data-tip="">
+               <span><button type="button" id="plupload-about_image" class="btn btn-danger plupload" data-input-id="c-about_image" data-mimetype="image/*" data-multiple="false" data-preview-id="p-about_image"><i class="fa fa-upload"></i> 上传</button></span>
+               <span><button type="button" id="fachoose-about_image" class="btn btn-primary fachoose" data-input-id="c-about_image" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> 选择</button></span>
+               <ul class="row list-inline plupload-preview" id="p-about_image"></ul>
+              </div>
+             </div>
+             <div class="col-sm-4"></div>
+            </div>
+           </td>
+           <td>图片尺寸：800X450</td>
+           <td></td>
+          </tr>
+         </tbody> 
+         <tfoot> 
+          <tr> 
+           <td></td> 
+           <td> <button type="submit" class="btn btn-success btn-embossed">保存</button> </td> 
+           <td></td> 
+           <td></td> 
+          </tr> 
+         </tfoot> 
+        </table> 
+       </form> 
+      </div> 
+     </div>
+
+    <div class="tab-pane fade " id="culture">
+      <div class="widget-body no-padding"> 
+       <form id="basic-form" class="edit-form form-horizontal nice-validator n-default n-bootstrap" role="form" data-toggle="validator" method="POST" action="{:url('Admin/wwh/About/culture')}" novalidate="novalidate"> 
+        <input type="hidden" name="__token__" value="" /> 
+        <table class="table table-striped"> 
+         <tbody> 
+          <tr>
+           <td style="width:8%">企业文化标题1</td> 
+           <td> 
+            <div class="row"> 
+             <div class="col-sm-8 col-xs-12"> 
+              <input type="text" name="culture_title1" value="{$data['culture_title1']}" class="form-control" /> 
+             </div> 
+             <div class="col-sm-4"></div> 
+            </div> </td> 
+           <td>culture_title1</td> 
+           <td></td> 
+          </tr>
+          <tr>
+           <td style="width:8%">企业文化英文1</td>
+           <td>
+            <div class="row">
+             <div class="col-sm-8 col-xs-12">
+              <input type="text" name="culture_en1" value="{$data['culture_en1']}" class="form-control" />
+             </div>
+             <div class="col-sm-4"></div>
+            </div> </td>
+           <td>culture_en1</td>
+           <td></td>
+          </tr>
+          <tr> 
+           <td style="width:8%">企业文化描述1</td> 
+           <td> 
+            <div class="row"> 
+             <div class="col-sm-8 col-xs-12"> 
+              <textarea name="culture_des1" class="form-control" style="height:100px;">{$data['culture_des1']}</textarea> 
+             </div> 
+             <div class="col-sm-4"></div> 
+            </div> </td> 
+           <td>culture_des1</td> 
+           <td></td> 
+          </tr>
+          <tr>
+           <td style="width:8%">企业文化图片1</td>
+           <td>
+            <div class="row">
+             <div class="col-sm-8 col-xs-12">
+              <div class="form-inline">
+               <input id="c-culture_image1" class="form-control" size="35" name="culture_image1" type="text" value="{$data['culture_image1']}" data-tip="">
+               <span><button type="button" id="plupload-culture_image1" class="btn btn-danger plupload" data-input-id="c-culture_image1" data-mimetype="image/*" data-multiple="false" data-preview-id="p-culture_image1"><i class="fa fa-upload"></i> 上传</button></span>
+               <span><button type="button" id="fachoose-culture_image1" class="btn btn-primary fachoose" data-input-id="c-culture_image1" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> 选择</button></span>
+               <ul class="row list-inline plupload-preview" id="p-culture_image1"></ul>
+              </div>
+             </div>
+             <div class="col-sm-4"></div>
+            </div>
+           </td>
+           <td>图片尺寸：441X580</td>
+           <td></td>
+          </tr>
+          <tr> 
+           <td style="width:8%">企业文化标题2</td> 
+           <td> 
+            <div class="row"> 
+             <div class="col-sm-8 col-xs-12"> 
+              <input type="text" name="culture_title2" value="{$data['culture_title2']}" class="form-control" /> 
+             </div> 
+             <div class="col-sm-4"></div> 
+            </div> </td> 
+           <td>culture_title2</td> 
+           <td></td> 
+          </tr> 
+          <tr> 
+           <td style="width:8%">企业文化英文2</td>
+           <td> 
+            <div class="row"> 
+             <div class="col-sm-8 col-xs-12">
+              <input type="text" name="culture_en2" value="{$data['culture_en2']}" class="form-control" />
+             </div> 
+             <div class="col-sm-4"></div> 
+            </div> </td> 
+           <td>culture_en2</td>
+           <td></td> 
+          </tr>
+          <tr>
+           <td style="width:8%">企业文化图片2</td>
+           <td>
+            <div class="row">
+             <div class="col-sm-8 col-xs-12">
+              <div class="form-inline">
+               <input id="c-culture_image2" class="form-control" size="35" name="culture_image2" type="text" value="{$data['culture_image2']}" data-tip="">
+               <span><button type="button" id="plupload-culture_image2" class="btn btn-danger plupload" data-input-id="c-culture_image2" data-mimetype="image/*" data-multiple="false" data-preview-id="p-culture_image2"><i class="fa fa-upload"></i> 上传</button></span>
+               <span><button type="button" id="fachoose-culture_image2" class="btn btn-primary fachoose" data-input-id="c-culture_image2" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> 选择</button></span>
+               <ul class="row list-inline plupload-preview" id="p-culture_image2"></ul>
+              </div>
+             </div>
+             <div class="col-sm-4"></div>
+            </div>
+           </td>
+           <td>图片尺寸：440X280</td>
+           <td></td>
+          </tr>
+          <tr> 
+           <td style="width:8%">企业文化标题3</td> 
+           <td> 
+            <div class="row"> 
+             <div class="col-sm-8 col-xs-12"> 
+              <input type="text" name="culture_title3" value="{$data['culture_title3']}" class="form-control" /> 
+             </div> 
+             <div class="col-sm-4"></div> 
+            </div> </td> 
+           <td>culture_title3</td> 
+           <td></td> 
+          </tr> 
+          <tr> 
+           <td style="width:8%">企业文化英文3</td>
+           <td> 
+            <div class="row"> 
+             <div class="col-sm-8 col-xs-12">
+              <input type="text" name="culture_en3" value="{$data['culture_en3']}" class="form-control" />
+             </div> 
+             <div class="col-sm-4"></div> 
+            </div> </td> 
+           <td>culture_en3</td>
+           <td></td> 
+          </tr>
+          <tr>
+           <td style="width:8%">企业文化图片3</td>
+           <td>
+            <div class="row">
+             <div class="col-sm-8 col-xs-12">
+              <div class="form-inline">
+               <input id="c-culture_image3" class="form-control" size="35" name="culture_image3" type="text" value="{$data['culture_image3']}" data-tip="">
+               <span><button type="button" id="plupload-culture_image3" class="btn btn-danger plupload" data-input-id="c-culture_image3" data-mimetype="image/*" data-multiple="false" data-preview-id="p-culture_image3"><i class="fa fa-upload"></i> 上传</button></span>
+               <span><button type="button" id="fachoose-culture_image3" class="btn btn-primary fachoose" data-input-id="c-culture_image3" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> 选择</button></span>
+               <ul class="row list-inline plupload-preview" id="p-culture_image3"></ul>
+              </div>
+             </div>
+             <div class="col-sm-4"></div>
+            </div>
+           </td>
+           <td>图片尺寸：440X280</td>
+           <td></td>
+          </tr>
+          <tr> 
+           <td style="width:8%">企业文化标题4</td> 
+           <td> 
+            <div class="row"> 
+             <div class="col-sm-8 col-xs-12"> 
+              <input type="text" name="culture_title4" value="{$data['culture_title4']}" class="form-control" /> 
+             </div> 
+             <div class="col-sm-4"></div> 
+            </div> </td> 
+           <td>culture_title4</td> 
+           <td></td> 
+          </tr> 
+          <tr> 
+           <td style="width:8%">企业文化英文4</td>
+           <td> 
+            <div class="row"> 
+             <div class="col-sm-8 col-xs-12">
+              <input type="text" name="culture_en4" value="{$data['culture_en4']}" class="form-control" />
+             </div> 
+             <div class="col-sm-4"></div> 
+            </div> </td> 
+           <td>culture_en4</td>
+           <td></td> 
+          </tr>
+          <tr>
+           <td style="width:8%">企业文化图片4</td>
+           <td>
+            <div class="row">
+             <div class="col-sm-8 col-xs-12">
+              <div class="form-inline">
+               <input id="c-culture_image4" class="form-control" size="35" name="culture_image4" type="text" value="{$data['culture_image4']}" data-tip="">
+               <span><button type="button" id="plupload-culture_image4" class="btn btn-danger plupload" data-input-id="c-culture_image4" data-mimetype="image/*" data-multiple="false" data-preview-id="p-culture_image4"><i class="fa fa-upload"></i> 上传</button></span>
+               <span><button type="button" id="fachoose-culture_image4" class="btn btn-primary fachoose" data-input-id="c-culture_image4" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> 选择</button></span>
+               <ul class="row list-inline plupload-preview" id="p-culture_image4"></ul>
+              </div>
+             </div>
+             <div class="col-sm-4"></div>
+            </div>
+           </td>
+           <td>图片尺寸：440X280</td>
+           <td></td>
+          </tr>
+          <tr> 
+           <td style="width:8%">企业文化标题5</td> 
+           <td> 
+            <div class="row"> 
+             <div class="col-sm-8 col-xs-12"> 
+              <input type="text" name="culture_title5" value="{$data['culture_title5']}" class="form-control" /> 
+             </div> 
+             <div class="col-sm-4"></div> 
+            </div> </td> 
+           <td>culture_title5</td> 
+           <td></td> 
+          </tr> 
+          <tr> 
+           <td style="width:8%">企业文化英文5</td>
+           <td> 
+            <div class="row"> 
+             <div class="col-sm-8 col-xs-12">
+              <input type="text" name="culture_en5" value="{$data['culture_en5']}" class="form-control" />
+             </div> 
+             <div class="col-sm-4"></div> 
+            </div> </td> 
+           <td>culture_en5</td>
+           <td></td> 
+          </tr>
+          <tr>
+           <td style="width:8%">企业文化图片5</td>
+           <td>
+            <div class="row">
+             <div class="col-sm-8 col-xs-12">
+              <div class="form-inline">
+               <input id="c-culture_image5" class="form-control" size="35" name="culture_image5" type="text" value="{$data['culture_image5']}" data-tip="">
+               <span><button type="button" id="plupload-culture_image5" class="btn btn-danger plupload" data-input-id="c-culture_image5" data-mimetype="image/*" data-multiple="false" data-preview-id="p-culture_image5"><i class="fa fa-upload"></i> 上传</button></span>
+               <span><button type="button" id="fachoose-culture_image5" class="btn btn-primary fachoose" data-input-id="c-culture_image5" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> 选择</button></span>
+               <ul class="row list-inline plupload-preview" id="p-culture_image5"></ul>
+              </div>
+             </div>
+             <div class="col-sm-4"></div>
+            </div>
+           </td>
+           <td>图片尺寸：440X280</td>
+           <td></td>
+          </tr>
+         </tbody> 
+         <tfoot> 
+          <tr> 
+           <td></td> 
+           <td> <button type="submit" class="btn btn-success btn-embossed">保存</button> </td> 
+           <td></td> 
+           <td></td> 
+          </tr> 
+         </tfoot> 
+        </table> 
+       </form> 
+      </div> 
+     </div>
+
+    </div> 
+   </div> 
+  </div>
+ </div>
+ </body>
+</html>

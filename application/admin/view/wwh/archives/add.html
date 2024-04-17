@@ -1,0 +1,174 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Type')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="radio">
+                {foreach name="typeList" item="vo"}
+                <label for="row[type]-{$key}"><input id="row[type]-{$key}" name="row[type]" type="radio" value="{$key}" {in name="key" value="product" }checked{/in} /> {$vo}</label>
+                {/foreach}
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-column_id" class="control-label col-xs-12 col-sm-2">{:__('Column_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select id="c-column_id" data-rule="required" class="form-control selectpicker" data-live-search="true" name="row[column_id]">
+                {$channelOptions}
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Title')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-title" data-rule="required" class="form-control" name="row[title]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group tf tf-product tf tf-cases tf tf-news">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Image')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-image" data-rule="required" class="form-control" size="50" name="row[image]" type="text" value="">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="faupload-image" class="btn btn-danger faupload" data-input-id="c-image" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp" data-multiple="false" data-preview-id="p-image"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-image" class="btn btn-primary fachoose" data-input-id="c-image" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-image"></span>
+            </div>
+            <ul class="row list-inline faupload-preview" id="p-image"></ul>
+        </div>
+    </div>
+    <div class="form-group tf tf-product tf tf-cases tf tf-news">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Seotitle')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-seotitle" data-rule="required" class="form-control" name="row[seotitle]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group tf tf-product tf tf-cases tf tf-news">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Keywords')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-keywords" data-rule="required" class="form-control" name="row[keywords]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group tf tf-product tf tf-cases tf tf-news">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Description')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-description" data-rule="required" class="form-control" name="row[description]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group tf tf-product">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Images')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-images" class="form-control" size="50" name="row[images]" type="text" value="">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="faupload-images" class="btn btn-danger faupload" data-input-id="c-images" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp" data-multiple="true" data-preview-id="p-images"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-images" class="btn btn-primary fachoose" data-input-id="c-images" data-mimetype="image/*" data-multiple="true"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-images"></span>
+            </div>
+            <ul class="row list-inline faupload-preview" id="p-images"></ul>
+        </div>
+    </div>
+    <div class="form-group tf tf-product tf tf-news">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Rec_data')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select  id="c-rec_data" data-rule="required" class="form-control selectpicker" multiple="" name="row[rec_data][]">
+                {foreach name="recDataList" item="vo"}
+                <option value="{$key}" {in name="key" value="0"}selected{/in}>{$vo}</option>
+                {/foreach}
+            </select>
+        </div>
+    </div>
+    <div class="form-group tf tf-product tf tf-news">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Rec_image')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-rec_image" class="form-control" size="50" name="row[rec_image]" type="text" value="">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="faupload-rec_image" class="btn btn-danger faupload" data-input-id="c-rec_image" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp" data-multiple="false" data-preview-id="p-rec_image"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-rec_image" class="btn btn-primary fachoose" data-input-id="c-rec_image" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-rec_image"></span>
+            </div>
+            <ul class="row list-inline faupload-preview" id="p-rec_image"></ul>
+        </div>
+    </div>
+    <div class="form-group tf tf-cases tf tf-news hidden">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Content')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-content" data-rule="required" class="form-control editor" rows="5" name="row[content]" cols="50"></textarea>
+        </div>
+    </div>
+    <div class="form-group tf tf-product">
+        <label class="control-label col-xs-12 col-sm-2">{:__('P_pn')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-p_pn" data-rule="required" class="form-control" name="row[p_pn]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group tf tf-product">
+        <label class="control-label col-xs-12 col-sm-2">{:__('P_func_content')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-p_func_content" data-rule="required" class="form-control editor" rows="5" name="row[p_func_content]" cols="50"></textarea>
+        </div>
+    </div>
+    <div class="form-group tf tf-product">
+        <label class="control-label col-xs-12 col-sm-2">{:__('P_tech_content')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-p_tech_content" data-rule="required" class="form-control editor" rows="5" name="row[p_tech_content]" cols="50"></textarea>
+        </div>
+    </div>
+    <div class="form-group tf tf-product">
+        <label class="control-label col-xs-12 col-sm-2">{:__('P_shape_image')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-p_shape_image" class="form-control" size="50" name="row[p_shape_image]" type="text" value="">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="faupload-p_shape_image" class="btn btn-danger faupload" data-input-id="c-p_shape_image" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp,image/webp" data-multiple="false" data-preview-id="p-p_shape_image"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-p_shape_image" class="btn btn-primary fachoose" data-input-id="c-p_shape_image" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-p_shape_image"></span>
+            </div>
+            <ul class="row list-inline faupload-preview" id="p-p_shape_image"></ul>
+        </div>
+    </div>
+    <div class="form-group tf tf-download hidden">
+        <label class="control-label col-xs-12 col-sm-2">{:__('D_file')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-d_file" data-rule="required" class="form-control" size="50" name="row[d_file]" type="text" value="">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="faupload-d_file" class="btn btn-danger faupload" data-input-id="c-d_file" data-multiple="false" data-preview-id="p-d_file"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-d_file" class="btn btn-primary fachoose" data-input-id="c-d_file" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-d_file"></span>
+            </div>
+            <ul class="row list-inline faupload-preview" id="p-d_file"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Weigh')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-weigh" data-rule="required" class="form-control" name="row[weigh]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Views')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-views" min="0" class="form-control" name="row[views]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Time')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-time" data-rule="required" class="form-control datetimepicker" data-date-format="YYYY-MM-DD" data-use-current="true" name="row[time]" type="text" value="{:date('Y-m-d')}">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>
